@@ -1,0 +1,39 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      APP_NAME: Nordfolio API
+      DEBUG: "false"
+      DATABASE_URL: sqlite:////app/data/portfolio.db
+      ALLOWED_ORIGINS: http://localhost:5173,http://localhost:8080
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      - portfolio_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          python -c "import urllib.request;
+          urllib.request.urlopen('http://localhost:8000/api/v1/health', timeout=3)"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: /api/v1
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  portfolio_data:
