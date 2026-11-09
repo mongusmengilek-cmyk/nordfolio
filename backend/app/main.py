@@ -25,12 +25,13 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Настройка CORS, чтобы фронтенд на Render мог обращаться к API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Разрешаем всем (пока настраиваем)
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["*"],
+    allow_origins=["*"],          # Разрешаем запросы с любого домена
+    allow_credentials=False,      # Обязательно False, если origins=["*"]
+    allow_methods=["*"],          # Разрешаем все методы (GET, POST, OPTIONS и т.д.)
+    allow_headers=["*"],          # Разрешаем любые заголовки
 )
 
 app.include_router(health.router, prefix=settings.api_v1_prefix)
