@@ -28,7 +28,7 @@ def seed_database(db: Session) -> None:
                 "было удобно пользоваться. Открыт для первых серьёзных проектов, стажировок "
                 "и команд, где можно учиться и расти."
             ),
-            email="mongusmemgilek@gmail.com",
+            email="mongusmengilek@gmail.com",
             phone="",
             location="Удалённо · работаю по всему миру",
             availability="Открыт для новых проектов",
@@ -51,7 +51,7 @@ def seed_database(db: Session) -> None:
             ),
             models.SocialLink(
                 label="Почта",
-                url="mailto:mongusmemgilek@gmail.com",
+                url="mailto:mongusmengilek@gmail.com",
                 icon="mail",
                 sort_order=3,
             ),
