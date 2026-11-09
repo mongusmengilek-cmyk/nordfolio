@@ -30,7 +30,7 @@ def submit_contact_form(
         if resend.api_key:
             resend.Emails.send({
                 "from": "onboarding@resend.dev",  # Тестовый отправитель
-                "to": "mongusmemgilek@gmail.com", # Ваша почта
+                "to": "mongusmengilek@gmail.com", # Ваша почта
                 "subject": f"Новая заявка с портфолио от {payload.name}",
                 "html": f"""
                     <h3>Новое сообщение с сайта!</h3>
