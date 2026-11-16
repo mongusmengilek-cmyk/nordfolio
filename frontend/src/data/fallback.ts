@@ -16,7 +16,7 @@ export const fallbackPortfolio: PortfolioData = {
     availability: 'Открыт для новых проектов',
     years_experience: 1,
     projects_count: 3,
-    clients_count: 1,
+    clients_count: 3,
   },
   socials: [
     {
@@ -25,14 +25,6 @@ export const fallbackPortfolio: PortfolioData = {
       url: 'https://github.com/mongusmengilek-cmyk',
       icon: 'github',
       sort_order: 1,
-    },
-    { id: 2, label: 'Telegram', url: 'https://t.me/', icon: 'telegram', sort_order: 2 },
-    {
-      id: 3,
-      label: 'Почта',
-      url: 'mailto:mongusmemgilek@gmail.com',
-      icon: 'mail',
-      sort_order: 3,
     },
   ],
   skills: [
