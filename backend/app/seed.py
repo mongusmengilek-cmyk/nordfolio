@@ -34,7 +34,7 @@ def seed_database(db: Session) -> None:
             availability="Открыт для новых проектов",
             years_experience=1,
             projects_count=3,
-            clients_count=1,
+            clients_count=3,
         )
     )
 
@@ -45,15 +45,6 @@ def seed_database(db: Session) -> None:
                 url="https://github.com/mongusmengilek-cmyk",
                 icon="github",
                 sort_order=1,
-            ),
-            models.SocialLink(
-                label="Telegram", url="https://t.me/", icon="telegram", sort_order=2
-            ),
-            models.SocialLink(
-                label="Почта",
-                url="mailto:mongusmengilek@gmail.com",
-                icon="mail",
-                sort_order=3,
             ),
         ]
     )
