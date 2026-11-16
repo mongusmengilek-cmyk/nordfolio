@@ -41,7 +41,7 @@ export const fallbackPortfolio: PortfolioData = {
     { id: 11, name: 'Git', category: 'Инструменты', level: 65, years: '6 месяцев', sort_order: 11 },
   ],
   projects: [
-        {
+           {
       id: 1,
       slug: 'tuvan-reserves',
       title: 'Заповедники Республики Тыва',
