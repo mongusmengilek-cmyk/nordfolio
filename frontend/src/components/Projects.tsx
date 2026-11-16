@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ArrowUpRight, GitBranch, MoveUpRight } from 'lucide-react'
+import { ArrowUpRight, GitBranch, MoveUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 
 import type { Project } from '../types'
 import { Reveal } from './Reveal'
@@ -9,25 +9,78 @@ interface ProjectsProps {
   projects: Project[]
 }
 
-function ProjectVisual({ project }: { project: Project }) {
-  // Если это проект про Тыву, показываем фото
-  if (project.slug === 'tuvan-reserves') {
-    return (
+// --- КОМПОНЕНТ СЛАЙДЕРА ДЛЯ ТЫВЫ ---
+const TuvaSlider = () => {
+  const images = ['/image1.png', '/image2.png', '/image3.png'];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  return (
+    <div 
+      style={{ 
+        position: 'relative', 
+        width: '100%', 
+        height: '310px', 
+        overflow: 'hidden',
+        borderRadius: '18px 18px 0 0'
+      }}
+    >
       <div 
-        className="project-visual" 
-        style={{ 
-          backgroundImage: 'url(/image1.png.png)', 
-          backgroundSize: 'cover', 
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundImage: `url(${images[currentIndex]})`,
+          backgroundSize: 'cover',
           backgroundPosition: 'center',
-          minHeight: '310px' 
-        }} 
-        aria-hidden="true"
+          transition: 'background-image 0.3s ease-in-out'
+        }}
+      />
+      
+      {/* Стрелки управления */}
+      <button 
+        onClick={prevSlide}
+        style={{
+          position: 'absolute', top: '50%', left: '10px', transform: 'translateY(-50%)',
+          background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '50%',
+          width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          cursor: 'pointer', zIndex: 10
+        }}
       >
-        <div className="project-visual__badge" style={{ position: 'absolute', zIndex: 10 }}>
-          {project.category}
-        </div>
+        <ChevronLeft size={24} />
+      </button>
+      
+      <button 
+        onClick={nextSlide}
+        style={{
+          position: 'absolute', top: '50%', right: '10px', transform: 'translateY(-50%)',
+          background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '50%',
+          width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          cursor: 'pointer', zIndex: 10
+        }}
+      >
+        <ChevronRight size={24} />
+      </button>
+      
+      <div className="project-visual__badge" style={{ position: 'absolute', top: '18px', left: '18px', zIndex: 10 }}>
+        Учебный
       </div>
-    )
+    </div>
+  )
+}
+
+function ProjectVisual({ project }: { project: Project }) {
+  // Если это проект про Тыву, показываем слайдер
+  if (project.slug === 'tuvan-reserves') {
+    return <TuvaSlider />
   }
 
   // Для остальных проектов оставляем старую красивую заглушку
@@ -115,7 +168,6 @@ export function Projects({ projects }: ProjectsProps) {
                 <h3>{project.title}</h3>
                 <p>{project.short_description}</p>
                 
-                {/* Показываем метрику, только если она есть (убрали пустую стрелочку) */}
                 {project.metric ? (
                   <div className="project-card__metric">↗ {project.metric}</div>
                 ) : null}
@@ -125,21 +177,25 @@ export function Projects({ projects }: ProjectsProps) {
                     <span key={technology}>{technology}</span>
                   ))}
                 </div>
-                <div className="project-card__links">
-                  <a href={project.demo_url} target="_blank" rel="noreferrer">
-                    Открыть кейс
-                    <MoveUpRight size={17} />
-                  </a>
-                  <a
-                    className="project-card__icon-link"
-                    href={project.repo_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`GitHub проекта ${project.title}`}
-                  >
-                    <GitBranch size={18} />
-                  </a>
-                </div>
+                
+                {/* Скрываем ссылки, если это проект про Тыву */}
+                {project.slug !== 'tuvan-reserves' && (
+                  <div className="project-card__links">
+                    <a href={project.demo_url} target="_blank" rel="noreferrer">
+                      Открыть кейс
+                      <MoveUpRight size={17} />
+                    </a>
+                    <a
+                      className="project-card__icon-link"
+                      href={project.repo_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`GitHub проекта ${project.title}`}
+                    >
+                      <GitBranch size={18} />
+                    </a>
+                  </div>
+                )}
               </div>
             </Reveal>
           ))}
