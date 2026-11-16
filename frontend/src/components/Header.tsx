@@ -38,10 +38,7 @@ export function Header({ theme, onToggleTheme }: HeaderProps) {
   return (
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="container site-header__inner">
-        <a className="brand" href="#top" aria-label="На главную" onClick={closeMenu}>
-          <span className="brand__mark">AM</span>
-          <span className="brand__dot" aria-hidden="true" />
-        </a>
+        
 
         <nav className="desktop-nav" aria-label="Основная навигация">
           {navigation.map((item) => (
