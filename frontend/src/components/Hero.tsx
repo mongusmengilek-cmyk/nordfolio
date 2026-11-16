@@ -109,7 +109,7 @@ export function Hero({ profile, socials }: HeroProps) {
             <div className="hero-card__profile">
               <div className="avatar-orbit">
                 <span className="avatar-orbit__ring" />
-                <div className="avatar-monogram">ММ</div>
+                <div className="avatar-monogram"></div>
                 <span className="avatar-orbit__badge">✦</span>
               </div>
               <div>
