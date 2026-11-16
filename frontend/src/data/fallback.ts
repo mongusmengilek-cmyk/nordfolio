@@ -41,7 +41,7 @@ export const fallbackPortfolio: PortfolioData = {
     { id: 11, name: 'Git', category: 'Инструменты', level: 65, years: '6 месяцев', sort_order: 11 },
   ],
   projects: [
-    {
+        {
       id: 1,
       slug: 'tuvan-reserves',
       title: 'Заповедники Республики Тыва',
@@ -49,8 +49,8 @@ export const fallbackPortfolio: PortfolioData = {
       short_description:
         'Сайт о заповедниках, городах и озёрах Республики Тыва. Собран в виде exe-файла, который открывается на любом компьютере.',
       full_description:
-        'Школьный проект, посвящённый природным достопримечательностям Тувы. Проект упакован в exe-файл и запускается на всех компьютерах без установки.',
-      technologies: ['Python', 'HTML', 'CSS'],
+        'Школьный проект, посвящённый природным достопримечательностям Тувы. Собрал информацию о заповедниках, городах и озёрах. Для удобной сдачи проекта я упаковал его в полноценный exe-файл: программа запускается на любом компьютере (Windows) без установки Python и дополнительных библиотек. Внутри — интерфейс с вкладками и текстами.',
+      technologies: ['Python', 'HTML', 'CSS', 'EXE', 'PyInstaller', 'Tkinter'],
       year: 2025,
       featured: true,
       demo_url: '#',
