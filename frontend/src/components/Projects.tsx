@@ -10,6 +10,27 @@ interface ProjectsProps {
 }
 
 function ProjectVisual({ project }: { project: Project }) {
+  // Если это проект про Тыву, показываем фото
+  if (project.slug === 'tuvan-reserves') {
+    return (
+      <div 
+        className="project-visual" 
+        style={{ 
+          backgroundImage: 'url(/image.png)', 
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center',
+          minHeight: '310px' 
+        }} 
+        aria-hidden="true"
+      >
+        <div className="project-visual__badge" style={{ position: 'absolute', zIndex: 10 }}>
+          {project.category}
+        </div>
+      </div>
+    )
+  }
+
+  // Для остальных проектов оставляем старую красивую заглушку
   return (
     <div className={`project-visual project-visual--${project.cover_variant}`} aria-hidden="true">
       <div className="project-visual__noise" />
@@ -65,7 +86,7 @@ export function Projects({ projects }: ProjectsProps) {
             <SectionHeading
               eyebrow="Избранные проекты"
               title="Работы, в которых дизайн решает бизнес-задачу"
-              description="Демо-кейсы уже заполнены и приходят из FastAPI. Замените тексты и ссылки на свои — структура останется прежней."
+              description="Мои лучшие проекты — от школьных работ до коммерческих заказов."
             />
           </Reveal>
           <Reveal className="projects__filters" delay={100}>
@@ -93,7 +114,12 @@ export function Projects({ projects }: ProjectsProps) {
                 </div>
                 <h3>{project.title}</h3>
                 <p>{project.short_description}</p>
-                <div className="project-card__metric">↗ {project.metric}</div>
+                
+                {/* Показываем метрику, только если она есть (убрали пустую стрелочку) */}
+                {project.metric ? (
+                  <div className="project-card__metric">↗ {project.metric}</div>
+                ) : null}
+
                 <div className="project-card__tech">
                   {project.technologies.map((technology) => (
                     <span key={technology}>{technology}</span>
