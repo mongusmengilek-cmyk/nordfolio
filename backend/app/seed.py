@@ -77,7 +77,7 @@ def seed_database(db: Session) -> None:
 
     db.add_all(
         [
-            models.Project(
+             models.Project(
                 slug="tuvan-reserves",
                 title="Заповедники Республики Тыва",
                 category="Учебный",
@@ -88,15 +88,17 @@ def seed_database(db: Session) -> None:
                 full_description=(
                     "Школьный проект, посвящённый природным достопримечательностям Тувы. "
                     "Собрал информацию о заповедниках, городах и озёрах. "
-                    "Проект упакован в exe-файл и запускается на всех компьютерах без установки."
+                    "Для удобной сдачи проекта я упаковал его в полноценный exe-файл: "
+                    "программа запускается на любом компьютере (Windows) без установки Python и "
+                    "дополнительных библиотек. Внутри — интерфейс с вкладками и текстами."
                 ),
-                technologies=["Python", "HTML", "CSS"],
+                technologies=["Python", "HTML", "CSS", "EXE", "PyInstaller", "Tkinter"],
                 year=2025,
                 featured=True,
                 demo_url="#",
                 repo_url="#",
                 cover_variant="blue",
-                metric="", # Оценка 5 убрана
+                metric="", # Оценку убрали
                 sort_order=1,
             ),
             models.Project(
