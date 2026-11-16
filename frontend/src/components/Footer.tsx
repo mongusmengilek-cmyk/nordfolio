@@ -19,10 +19,7 @@ export function Footer({ profile, socials }: FooterProps) {
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__brand">
-          <a className="brand" href="#top" aria-label="На главную">
-            <span className="brand__mark">AM</span>
-            <span className="brand__dot" aria-hidden="true" />
-          </a>
+         
           <p>Дизайн, frontend и backend — в одной цельной системе.</p>
         </div>
 
