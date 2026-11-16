@@ -16,7 +16,7 @@ function ProjectVisual({ project }: { project: Project }) {
       <div 
         className="project-visual" 
         style={{ 
-          backgroundImage: 'url(/image1.png)', 
+          backgroundImage: 'url(/image1.png.png)', 
           backgroundSize: 'cover', 
           backgroundPosition: 'center',
           minHeight: '310px' 
