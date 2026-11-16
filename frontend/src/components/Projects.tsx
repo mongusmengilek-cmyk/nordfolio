@@ -11,7 +11,7 @@ interface ProjectsProps {
 
 // --- КОМПОНЕНТ СЛАЙДЕРА ДЛЯ ТЫВЫ ---
 const TuvaSlider = () => {
-  const images = ['/image1.png', '/image2.png', '/image3.png'];
+  const images = ['/image1.png.png', '/image2.png', '/image3.png'];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = (e: React.MouseEvent) => {
