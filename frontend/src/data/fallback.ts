@@ -72,7 +72,7 @@ export const fallbackPortfolio: PortfolioData = {
       year: 2025,
       featured: true,
       demo_url: '#',
-      repo_url: 'https://github.com/mongusmengilek-cmyk/londa',
+      repo_url: 'https://github.com/mongusmengilek-cmyk/londa.git',
       cover_variant: 'pink',
       metric: 'Первый коммерческий заказ',
       sort_order: 2,
