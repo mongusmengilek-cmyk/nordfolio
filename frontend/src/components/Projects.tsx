@@ -9,9 +9,8 @@ interface ProjectsProps {
   projects: Project[]
 }
 
-// --- КОМПОНЕНТ СЛАЙДЕРА ДЛЯ ТЫВЫ ---
-const TuvaSlider = () => {
-  const images = ['/image1.png.png', '/image2.png', '/image3.png'];
+// Универсальный компонент для слайдера
+const ImageSlider = ({ images, category }: { images: string[], category: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = (e: React.MouseEvent) => {
@@ -71,19 +70,29 @@ const TuvaSlider = () => {
       </button>
       
       <div className="project-visual__badge" style={{ position: 'absolute', top: '18px', left: '18px', zIndex: 10 }}>
-        Учебный
+        {category}
       </div>
     </div>
   )
 }
 
 function ProjectVisual({ project }: { project: Project }) {
-  // Если это проект про Тыву, показываем слайдер
+  // 1. Слайдер для Тывы (3 фото)
   if (project.slug === 'tuvan-reserves') {
-    return <TuvaSlider />
+    return <ImageSlider images={['/image1.png', '/image2.png', '/image3.png']} category={project.category} />
   }
 
-  // Для остальных проектов оставляем старую красивую заглушку
+  // 2. Слайдер для Лонды (5 фото)
+  if (project.slug === 'londa-salon') {
+    return (
+      <ImageSlider 
+        images={['/londa.png', '/londa2.png', '/londa3.png', '/londa4.png', '/londa5.png']} 
+        category={project.category} 
+      />
+    )
+  }
+
+  // 3. Старая заглушка для остальных (Nordfolio)
   return (
     <div className={`project-visual project-visual--${project.cover_variant}`} aria-hidden="true">
       <div className="project-visual__noise" />
@@ -178,7 +187,7 @@ export function Projects({ projects }: ProjectsProps) {
                   ))}
                 </div>
                 
-                {/* Скрываем ссылки, если это проект про Тыву */}
+                {/* Скрываем ссылки только для Тывы */}
                 {project.slug !== 'tuvan-reserves' && (
                   <div className="project-card__links">
                     <a href={project.demo_url} target="_blank" rel="noreferrer">
